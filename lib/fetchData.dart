@@ -4,9 +4,22 @@ import 'package:http/http.dart' as http;
 
 class QuoteList extends StatelessWidget {
 
-  final String apiUrl = "https://animechan.vercel.app/api/quotes/anime?title=naruto";
+  final String apiUrl = "https://animechan.vercel.app/api";
+  String character;
 
   Future<List<dynamic>> fetchQuotes() async {
+    var result = await http.get(apiUrl);
+    return json.decode(result.body);
+  }
+
+  Future<List<dynamic>> fetchCharacterQuotes() async {
+    character = 'Saitama';
+    var api = '$apiUrl/quotes/character?name=$character';
+    var result = await http.get(api);
+    return json.decode(result.body);
+  }
+
+  Future<List<dynamic>> getPage() async {
     var result = await http.get(apiUrl);
     return json.decode(result.body);
   }
@@ -27,7 +40,7 @@ class QuoteList extends StatelessWidget {
       ),
       body: Container(
         child: FutureBuilder<List <dynamic>>(
-          future: fetchQuotes(),
+          future: fetchCharacterQuotes(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if(snapshot.hasData){
               print(snapshot);
