@@ -34,6 +34,9 @@ class QuoteList extends StatelessWidget {
     character = 'saitama';
     page = 1;
     if(anime==true){
+      var api = '$apiUrl/quotes/character?name=$character&page=$page';
+      var result = await http.get(api);
+      return json.decode(result.body);
 
     }else if(character==true){
       var api = '$apiUrl/quotes/character?name=$character&page=$page';
