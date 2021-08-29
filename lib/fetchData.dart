@@ -5,7 +5,9 @@ import 'package:http/http.dart' as http;
 class QuoteList extends StatelessWidget {
 
   final String apiUrl = "https://animechan.vercel.app/api";
+  String anime;
   String character;
+  int page;
 
   Future<List<dynamic>> fetchQuotes() async {
     var result = await http.get(apiUrl);
@@ -13,15 +15,31 @@ class QuoteList extends StatelessWidget {
   }
 
   Future<List<dynamic>> fetchCharacterQuotes() async {
-    character = 'Saitama';
+    character = 'saitama';
+    anime = null;
     var api = '$apiUrl/quotes/character?name=$character';
     var result = await http.get(api);
     return json.decode(result.body);
   }
 
-  Future<List<dynamic>> getPage() async {
-    var result = await http.get(apiUrl);
+  Future<List<dynamic>> fetchAnimeQuotes() async {
+    anime = 'Naruto';
+    character = null;
+    var api = '$apiUrl/quotes/anime?title=$anime';
+    var result = await http.get(api);
     return json.decode(result.body);
+  }
+
+  Future<List<dynamic>> getPage() async {
+    character = 'saitama';
+    page = 1;
+    if(anime==true){
+
+    }else if(character==true){
+      var api = '$apiUrl/quotes/character?name=$character&page=$page';
+      var result = await http.get(api);
+      return json.decode(result.body);
+    }
   }
 
   String _name(dynamic anime){
@@ -40,7 +58,7 @@ class QuoteList extends StatelessWidget {
       ),
       body: Container(
         child: FutureBuilder<List <dynamic>>(
-          future: fetchCharacterQuotes(),
+          future: getPage(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if(snapshot.hasData){
               print(snapshot);
