@@ -3,19 +3,18 @@ import 'dart:convert';
 
 class animeQuote {
   String name;
-  Map quote = {};
+  var quote = [];
 
   animeQuote({this.name});
 
-  Future<void> getQuote(character) async{
+  Future<void> getQuote() async{
     try{
-      Response response = await get('https://animechan.vercel.app/api/quotes/character?name=$character');
+      var response = await get('https://animechan.vercel.app/api/quotes/character?name=$name');
       quote = jsonDecode(response.body);
-      print(quote);
 
     }catch(e){
       print(e);
-      quote = {};
+      quote = [];
     }
   }
 

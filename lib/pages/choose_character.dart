@@ -24,6 +24,17 @@ class _ChooseState extends State<Choose> {
     animeQuote(name: 'Sasuke')
   ];
 
+  void updateDetail(index) async {
+    // print(character[index].name);
+    animeQuote instance = character[index];
+
+    await instance.getQuote();
+    Navigator.pop(context, {
+      'name' : instance.name,
+      'quote' : instance.quote
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -45,7 +56,7 @@ class _ChooseState extends State<Choose> {
               padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
               child: ListTile(
                 onTap: () {
-
+                  updateDetail(index);
                 },
                 title: Text(character[index].name),
               ),
