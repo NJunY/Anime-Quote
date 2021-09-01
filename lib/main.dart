@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'fetchData.dart';
+import 'package:anime_quote/pages/show_case.dart';
+import 'package:anime_quote/pages/choose_character.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,11 +9,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Anime Quote',
-      theme: ThemeData(
-        primarySwatch: Colors.blue
-      ),
-      home: QuoteList(),
+      initialRoute: '/choose',
+      routes: {
+        '/choose' : (context) => Choose(),
+        '/home' : (context) => Show()
+      },
     );
   }
 }
