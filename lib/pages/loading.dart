@@ -15,7 +15,7 @@ class _LoadingState extends State<Loading> {
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'name': instance.name,
       'quotes': instance.quote,
-      'img' : instance.img
+      'img' : 'naruto'
     });
   }
 

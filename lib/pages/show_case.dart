@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Show extends StatefulWidget {
@@ -9,21 +10,21 @@ class Show extends StatefulWidget {
 class _HomeState extends State<Show> {
 
   Map data = {};
+  // Color bgColor = const Color(0xffb74093);
 
   @override
   Widget build(BuildContext context) {
 
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
-    print(data);
 
     return Scaffold(
-      backgroundColor: Colors.blue,
+      // backgroundColor: Colors.blue,
       appBar: AppBar(
-        backgroundColor: Colors.white70,
+        backgroundColor: Colors.blueAccent,
         title: Text(
             data['name'],
           style: TextStyle(
-            color: Colors.black
+            color: Colors.white
           ),
         ),
         centerTitle: true,
@@ -47,7 +48,7 @@ class _HomeState extends State<Show> {
                     }
                   },
                   icon: Icon(
-                    Icons.edit_location
+                    Icons.switch_account
                   ),
                 label: Text(
                   'Change Character'
@@ -62,24 +63,35 @@ class _HomeState extends State<Show> {
                   height: 200,
                 )
               ),
-              ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: data["quotes"].length,
-                  itemBuilder: (context, index){
-                    return Padding(
-                        padding: const EdgeInsets.all(15.0),
-                      child: Card(
-                        child: Text(
-                          '"${data['quotes'][index]["quote"]}"',
-                          style: TextStyle(
-                            fontSize: 15
+              Container(
+                margin: const EdgeInsets.only(top: 20),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular((20)), topRight: Radius.circular(20))
+                ),
+                child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: data["quotes"].length,
+                    itemBuilder: (context, index){
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+                        child: Card(
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              '"${data['quotes'][index]["quote"]}"',
+                              style: TextStyle(
+                                  fontSize: 15
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }
-              )
+                      );
+                    }
+                ),
+              ),
             ],
           ),
         ),
