@@ -10,28 +10,28 @@ class Choose extends StatefulWidget {
 class _ChooseState extends State<Choose> {
 
   List<animeQuote> character = [
-    animeQuote(name: 'Saitama'),
-    animeQuote(name: 'Naruto'),
-    animeQuote(name: 'Kakashi'),
-    animeQuote(name: 'Ranma'),
-    animeQuote(name: 'Goku'),
-    animeQuote(name: 'Itachi Uchiha'),
-    animeQuote(name: 'luffy'),
-    animeQuote(name: 'vegeta'),
-    animeQuote(name: 'madara uchiha'),
-    animeQuote(name: 'jotaro'),
-    animeQuote(name: 'gaara'),
-    animeQuote(name: 'Sasuke')
+    animeQuote(name: 'Saitama', img: 'saitama'),
+    animeQuote(name: 'Naruto', img: 'naruto'),
+    animeQuote(name: 'Kakashi', img: 'kakshi'),
+    animeQuote(name: 'Ranma', img: 'ranma'),
+    animeQuote(name: 'Goku', img: 'goku'),
+    animeQuote(name: 'Itachi Uchiha', img: 'itachi'),
+    animeQuote(name: 'luffy', img: 'luffy'),
+    animeQuote(name: 'vegeta', img: 'vegeta'),
+    animeQuote(name: 'madara uchiha', img: 'madara'),
+    animeQuote(name: 'jotaro', img: 'jotaro'),
+    animeQuote(name: 'gaara', img: 'gaara'),
+    animeQuote(name: 'Sasuke', img: 'sasuke')
   ];
 
   void updateDetail(index) async {
-    // print(character[index].name);
     animeQuote instance = character[index];
 
     await instance.getQuote();
     Navigator.pop(context, {
       'name' : instance.name,
-      'quote' : instance.quote
+      'quote' : instance.quote,
+      'img' : instance.img
     });
   }
 

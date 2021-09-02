@@ -19,7 +19,13 @@ class _HomeState extends State<Show> {
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text(data['name']),
+        backgroundColor: Colors.white70,
+        title: Text(
+            data['name'],
+          style: TextStyle(
+            color: Colors.black
+          ),
+        ),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -34,7 +40,8 @@ class _HomeState extends State<Show> {
                       setState(() {
                         data = {
                           'name' : result['name'],
-                          'quotes' : result['quote']
+                          'quotes' : result['quote'],
+                          'img' : result['img']
                         };
                       });
                     }
@@ -47,10 +54,13 @@ class _HomeState extends State<Show> {
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                child: Text(
-                  'asdasd'
-                ),
+                  padding: const EdgeInsets.only(left: 0),
+                child: Image(
+                  image: AssetImage(
+                    'assets/img/${data['img']}.png',
+                  ),
+                  height: 200,
+                )
               ),
               ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
@@ -61,7 +71,7 @@ class _HomeState extends State<Show> {
                         padding: const EdgeInsets.all(15.0),
                       child: Card(
                         child: Text(
-                          data['quotes'][index]["quote"],
+                          '"${data['quotes'][index]["quote"]}"',
                           style: TextStyle(
                             fontSize: 15
                           ),

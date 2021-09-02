@@ -3,9 +3,10 @@ import 'dart:convert';
 
 class animeQuote {
   String name;
+  String img;
   var quote = [];
 
-  animeQuote({this.name});
+  animeQuote({this.name, this.img});
 
   Future<void> getQuote() async{
     try{

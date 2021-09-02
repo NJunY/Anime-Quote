@@ -14,7 +14,8 @@ class _LoadingState extends State<Loading> {
     await instance.getQuote();
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'name': instance.name,
-      'quotes': instance.quote
+      'quotes': instance.quote,
+      'img' : instance.img
     });
   }
 
