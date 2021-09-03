@@ -30,9 +30,20 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
-        child: Text(
-          'Loading'
-        ),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 250, bottom: 20),
+              child: Text(
+                  'Anime Quote App',
+                style: TextStyle(fontSize: 30),
+              ),
+            ),
+            Text(
+              'Powered By: https://animechan.vercel.app/'
+            )
+          ],
+        )
       ),
     );
   }
